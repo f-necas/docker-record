@@ -2,11 +2,13 @@
   "settings": {
     "index": {
       "max_result_window": 15000,
+      "max_inner_result_window": 200,
       "query.default_field": "any.default",
       "mapping.total_fields.limit": 4000,
       "analysis": {
         "normalizer": {
           "sorting": {
+            "type": "custom",
             "filter": [
               "lowercase",
               "asciifolding"
@@ -29,6 +31,7 @@
             ]
           },
           "french_rebuilt": {
+            "type": "custom",
             "tokenizer": "standard",
             "filter": [
               "lowercase",
@@ -41,6 +44,7 @@
             ]
           },
           "english_rebuilt": {
+            "type": "custom",
             "tokenizer": "standard",
             "filter": [
               "english_possessive_stemmer",
@@ -53,6 +57,7 @@
             ]
           },
           "synInspireAnnexes": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -62,6 +67,7 @@
             ]
           },
           "synInspireThemeUris": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -69,6 +75,7 @@
             ]
           },
           "synInspireThemes": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -76,6 +83,7 @@
             ]
           },
           "keepInspireServiceTypes": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -83,6 +91,7 @@
             ]
           },
           "keepInspireAnnexes": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -90,6 +99,7 @@
             ]
           },
           "keepInspireThemes": {
+            "type": "custom",
             "tokenizer": "keyword",
             "filter": [
               "lowercase",
@@ -454,7 +464,7 @@
               "usage des sols => land use",
               "χρήσεις γης => land use",
               "uso del suelo => land use",
-              "ползване на земята => land use",
+              "ползване н�� земята => land use",
               "využití území => land use",
               "arealanvendelse => land use",
               "bodennutzung => land use",
@@ -567,7 +577,7 @@
               "termelő és ipari létesítmények => production and industrial facilities",
               "tootmis- ja tööstusrajatised => production and industrial facilities",
               "instalaciones de producción e industriales => production and industrial facilities",
-              "εγκαταστάσεις παραγωγής και βιομηχανικές εγκαταστάσεις => production and industrial facilities",
+              "εγκαταστάσεις παραγωγής και βιομηχανικές εγκα��αστάσεις => production and industrial facilities",
               "produktions- und industrieanlagen => production and industrial facilities",
               "výrobní a průmyslová zařízení => production and industrial facilities",
               "produktions- og industrifaciliteter => production and industrial facilities",
@@ -640,7 +650,7 @@
               "ζώνες διαχείρισης/περιορισμού/ρύθμισης εκτάσεων και μονάδες αναφοράς => area management/restriction/regulation zones and reporting units",
               "forvaltede og regulerede områder samt områder med brugsbegrænsning og indberetningsenheder => area management/restriction/regulation zones and reporting units",
               "správní oblasti/chráněná pásma/regulovaná území a jednotky podávající hlášení => area management/restriction/regulation zones and reporting units",
-              "управление на територията/ограничени/регулирани зони и отчетни единици => area management/restriction/regulation zones and reporting units",
+              "управление на територията/о��раничени/регулирани зони и отчетни единици => area management/restriction/regulation zones and reporting units",
               "http://rdfdata.eionet.europa.eu/inspirethemes/themes/24 => area management/restriction/regulation zones and reporting units",
               "območja nevarnosti naravnih nesreč => natural risk zones",
               "naturliga riskområden => natural risk zones",
@@ -667,7 +677,7 @@
               "http://rdfdata.eionet.europa.eu/inspirethemes/themes/25 => natural risk zones",
               "ozračje => atmospheric conditions",
               "atmosfäriska förhållanden => atmospheric conditions",
-              "condiţii atmosferice => atmospheric conditions",
+              "condi��ii atmosferice => atmospheric conditions",
               "condiții atmosferice => atmospheric conditions",
               "atmosférické podmienky => atmospheric conditions",
               "warunki atmosferyczne => atmospheric conditions",
@@ -707,7 +717,7 @@
               "aspectos geográficos de carácter meteorológico => meteorological geographical features",
               "meteorologisch-geografische kennwerte => meteorological geographical features",
               "meteorologisk-geografiske forhold => meteorological geographical features",
-              "метеорологи��ни географски характеристики => meteorological geographical features",
+              "метеорологични географски характеристики => meteorological geographical features",
               "zeměpisné meteorologické prvky => meteorological geographical features",
               "http://rdfdata.eionet.europa.eu/inspirethemes/themes/27 => meteorological geographical features",
               "geografiska oceanografiska förhållanden => oceanographic geographical features",
@@ -1067,6 +1077,14 @@
         }
       },
       {
+        "recordLink_": {
+          "match": "recordLink_*",
+          "mapping": {
+            "type": "keyword"
+          }
+        }
+      },
+      {
         "numbers": {
           "match": "*Number",
           "mapping": {
@@ -1122,11 +1140,60 @@
                   "organisationName.langdut"
                 ]
               },
+              "langdan": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langdan",
+                  "organisationName.langdan"
+                ]
+              },
               "langspa": {
                 "type": "keyword",
                 "copy_to": [
                   "any.langspa",
                   "organisationName.langspa"
+                ]
+              },
+              "langarm": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langarm",
+                  "organisationName.langarm"
+                ]
+              },
+              "langaze": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langaze",
+                  "organisationName.langaze"
+                ]
+              },
+              "langgeo": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langgeo",
+                  "organisationName.langgeo"
+                ]
+              },
+              "langrum": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langrum",
+                  "organisationName.langrum"
+                ]
+              },
+              "langukr": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langukr",
+                  "organisationName.langukr"
+                ]
+              },
+              "langpol": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langpol",
+                  "organisationName.langpol"
                 ]
               },
               "link": {
@@ -1221,6 +1288,19 @@
                   }
                 }
               },
+              "langdan": {
+                "type": "text",
+                "analyzer": "danish",
+                "copy_to": [
+                  "any.langdan"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
               "langita": {
                 "type": "text",
                 "analyzer": "italian",
@@ -1247,11 +1327,89 @@
                   }
                 }
               },
+              "langarm": {
+                "type": "text",
+                "analyzer": "armenian",
+                "copy_to": [
+                  "any.langarm"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
+              "langaze": {
+                "type": "text",
+                "analyzer": "standard",
+                "copy_to": [
+                  "any.langaze"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
+              "langgeo": {
+                "type": "text",
+                "analyzer": "standard",
+                "copy_to": [
+                  "any.langgeo"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
+              "langrum": {
+                "type": "text",
+                "analyzer": "romanian",
+                "copy_to": [
+                  "any.langrum"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
+              "langukr": {
+                "type": "text",
+                "analyzer": "standard",
+                "copy_to": [
+                  "any.langukr"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
               "langroh": {
                 "type": "text",
                 "analyzer": "standard",
                 "copy_to": [
                   "any.langroh"
+                ],
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 2000
+                  }
+                }
+              },
+              "langpol": {
+                "type": "text",
+                "analyzer": "standard",
+                "copy_to": [
+                  "any.langpol"
                 ],
                 "fields": {
                   "keyword": {
@@ -1317,10 +1475,6 @@
         "tag": {
           "match": "th_*",
           "mapping": {
-            "type": "object",
-            "copy_to": [
-              "tag"
-            ],
             "properties": {
               "default": {
                 "type": "keyword",
@@ -1352,6 +1506,12 @@
                   "any.langdut"
                 ]
               },
+              "langdan": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langdan"
+                ]
+              },
               "langita": {
                 "type": "keyword",
                 "copy_to": [
@@ -1362,6 +1522,42 @@
                 "type": "keyword",
                 "copy_to": [
                   "any.langspa"
+                ]
+              },
+              "langarm": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langarm"
+                ]
+              },
+              "langaze": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langaze"
+                ]
+              },
+              "langgeo": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langgeo"
+                ]
+              },
+              "langrum": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langrum"
+                ]
+              },
+              "langukr": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langukr"
+                ]
+              },
+              "langpol": {
+                "type": "keyword",
+                "copy_to": [
+                  "any.langpol"
                 ]
               },
               "text": {
@@ -1487,7 +1683,7 @@
         "synInspireAnnexesType": {
           "match": "inspireAnnex*",
           "mapping": {
-            "type": "keyword",
+            "type": "text",
             "fielddata": true,
             "analyzer": "synInspireAnnexes",
             "search_analyzer": "keyword"
@@ -1498,7 +1694,7 @@
         "synInspireThemeType": {
           "match": "inspireTheme*",
           "mapping": {
-            "type": "keyword",
+            "type": "text",
             "fielddata": true,
             "analyzer": "synInspireThemes",
             "search_analyzer": "keyword"
@@ -1509,7 +1705,7 @@
         "inspireServiceType": {
           "match": "inspireServiceType",
           "mapping": {
-            "type": "keyword",
+            "type": "text",
             "fielddata": true,
             "analyzer": "keepInspireServiceTypes",
             "search_analyzer": "keyword"
@@ -1545,6 +1741,10 @@
             "type": "text",
             "analyzer": "dutch"
           },
+          "langdan": {
+            "type": "text",
+            "analyzer": "danish"
+          },
           "langita": {
             "type": "text",
             "analyzer": "italian"
@@ -1553,7 +1753,31 @@
             "type": "text",
             "analyzer": "spanish"
           },
+          "langarm": {
+            "type": "text",
+            "analyzer": "armenian"
+          },
+          "langaze": {
+            "type": "text",
+            "analyzer": "standard"
+          },
+          "langgeo": {
+            "type": "text",
+            "analyzer": "standard"
+          },
+          "langrum": {
+            "type": "text",
+            "analyzer": "romanian"
+          },
+          "langukr": {
+            "type": "text",
+            "analyzer": "standard"
+          },
           "langroh": {
+            "type": "text",
+            "analyzer": "standard"
+          },
+          "langpol": {
             "type": "text",
             "analyzer": "standard"
           }
@@ -1596,6 +1820,12 @@
               "any.langdut"
             ]
           },
+          "langdan": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langdan"
+            ]
+          },
           "langita": {
             "type": "keyword",
             "copy_to": [
@@ -1606,6 +1836,42 @@
             "type": "keyword",
             "copy_to": [
               "any.langspa"
+            ]
+          },
+          "langarm": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langarm"
+            ]
+          },
+          "langaze": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langaze"
+            ]
+          },
+          "langgeo": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langgeo"
+            ]
+          },
+          "langrum": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langrum"
+            ]
+          },
+          "langukr": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langukr"
+            ]
+          },
+          "langpol": {
+            "type": "keyword",
+            "copy_to": [
+              "any.langpol"
             ]
           },
           "link": {
@@ -1621,8 +1887,7 @@
       },
       "document": {
         "type": "text",
-        "index": false,
-        "doc_values": false
+        "index": false
       },
       "documentStandard": {
         "type": "keyword"
@@ -1693,9 +1958,6 @@
       "isOpenData": {
         "type": "keyword"
       },
-      "lineage": {
-        "type": "text"
-      },
       "resolutionScaleDenominator": {
         "type": "integer"
       },
@@ -1727,6 +1989,46 @@
           },
           "pass": {
             "type": "keyword"
+          }
+        }
+      },
+      "measure": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "keyword"
+          },
+          "description": {
+            "type": "text"
+          },
+          "date": {
+            "type": "date"
+          },
+          "value": {
+            "type": "keyword"
+          },
+          "unit": {
+            "type": "keyword"
+          },
+          "type": {
+            "type": "keyword"
+          }
+        }
+      },
+      "processSteps": {
+        "type": "nested",
+        "properties": {
+          "descriptionObject": {
+            "type": "object"
+          },
+          "date": {
+            "type": "date"
+          },
+          "source": {
+            "type": "object"
+          },
+          "processor": {
+            "type": "object"
           }
         }
       },
@@ -1864,7 +2166,8 @@
             "type": "keyword"
           },
           "title": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": "any.common"
           },
           "origin": {
             "type": "keyword"
@@ -1987,8 +2290,7 @@
       },
       "validReport": {
         "type": "text",
-        "index": false,
-        "doc_values": false
+        "index": false
       },
       "useLimitation": {
         "type": "text",
@@ -2052,7 +2354,18 @@
         "type": "boolean"
       },
       "indexingErrorMsg": {
-        "type": "keyword"
+        "type": "object",
+        "properties": {
+          "string": {
+            "type": "keyword"
+          },
+          "type": {
+            "type": "keyword"
+          },
+          "values": {
+            "type": "nested"
+          }
+        }
       },
       "statusWorkflow": {
         "type": "keyword"
@@ -2101,7 +2414,28 @@
           "langdut": {
             "type": "keyword"
           },
+          "langdan": {
+            "type": "keyword"
+          },
           "langspa": {
+            "type": "keyword"
+          },
+          "langarm": {
+            "type": "keyword"
+          },
+          "langaze": {
+            "type": "keyword"
+          },
+          "langgeo": {
+            "type": "keyword"
+          },
+          "langrum": {
+            "type": "keyword"
+          },
+          "langukr": {
+            "type": "keyword"
+          },
+          "langpol": {
             "type": "keyword"
           }
         }
